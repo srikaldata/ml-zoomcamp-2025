@@ -2,12 +2,14 @@
 
 import pickle
 
+# import the model
 with open('pipeline_v1.bin', 'rb') as f_in:
     pipeline = pickle.load(f_in)
 
 
-def predict_single(customer):
-    result = pipeline.predict_proba(customer)[0, 1]
+# fn for unit lead prediction
+def predict_single(lead):
+    result = pipeline.predict_proba(lead)[0, 1]
     return float(result)
 
 # QUESTION 3
