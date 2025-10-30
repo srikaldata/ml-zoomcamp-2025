@@ -1,3 +1,5 @@
+FROM agrigorev/zoomcamp-model:2025 as base
+
 FROM agrigorev/zoomcamp-model:2025
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
@@ -10,8 +12,8 @@ COPY "pyproject.toml" "uv.lock" ".python-version" ./
 
 RUN uv sync --locked
 
-COPY "question4_predict.py" "pipeline_v1.bin" ./
+COPY "question6_predict.py" ./
 
 EXPOSE #
 
-ENTRYPOINT ["uvicorn", "question4_predict:app", "--host", "#.#.#.#", "--port", "#"]
+ENTRYPOINT ["uvicorn", "question6_predict:app", "--host", "#.#.#.#", "--port", "#"]
