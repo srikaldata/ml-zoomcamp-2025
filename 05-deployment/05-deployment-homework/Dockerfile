@@ -12,6 +12,8 @@ COPY "pyproject.toml" "uv.lock" ".python-version" ./
 
 RUN uv sync --locked
 
+COPY --from=base /code/pipeline_v2.bin ./
+
 COPY "question6_predict.py" ./
 
 EXPOSE #
