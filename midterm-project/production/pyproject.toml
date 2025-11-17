@@ -1,7 +1,7 @@
 [project]
 name = "production"
 version = "0.1.0"
-description = "Insulin Dosage Decision Estimation using Patient Health Data service"
+description = "Insulin Dosage Decision using Patient Health Data service"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [

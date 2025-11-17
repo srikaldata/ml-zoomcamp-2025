@@ -642,13 +642,23 @@ plt.show()
 # saving the model as a pickled file
 import pickle
 
-with open('pickled_model.pkl', 'wb') as file:
+with open('pickled_model.bin', 'wb') as file:
     pickle.dump(xgboost_final, file)
 
 
+# initialize final dict vectorizer for inference
+dictvec_fulltrain = DictVectorizer(sparse=False)
+
+# create x train or full train after vectorizing features respectively
+X_train_full = dictvec_fulltrain.fit_transform(full_train_df.iloc[:, :10].to_dict(orient='records'))
+    
+# exporting the dict vectorizer
+with open('dictvec_fulltrain.bin', 'wb') as file:
+    pickle.dump(dictvec_fulltrain, file)
+
 
 # testing the pickled model
-with open('pickled_model.pkl', 'rb') as file:
+with open('pickled_model.bin', 'rb') as file:
     loaded_model = pickle.load(file)
 
 # You can now use loaded_model to make predictions
@@ -657,6 +667,13 @@ print(f"Accuracy: {accuracy_score(y_test, y_pred):.4f}")
 print(f"Precision: {precision_score(y_test, y_pred):.4f}")
 print(f"Recall: {recall_score(y_test, y_pred):.4f}")
 print(f"F1 Score: {f1_score(y_test, y_pred):.4f}")
+
+
+# testing the final dict vectorizer
+with open('dictvec_fulltrain.bin', 'rb') as file:
+    loaded_dictvec = pickle.load(file)
+
+feature_test = loaded_dictvec.transform(test_df.iloc[:, :-1].to_dict(orient='records'))
+print(feature_test)
+
 print('best model is selected, pickled and verified!')
-
-
