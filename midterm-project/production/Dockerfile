@@ -1,0 +1,30 @@
+FROM alpine:3.18 AS base
+
+# necessary files needed for uv virtual environment
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+# setting the working directory
+WORKDIR /code
+
+ENV PATH="/code/.venv/bin:$PATH"
+
+COPY "pyproject.toml" "uv.lock" ".python-version" ./
+
+RUN uv sync --locked
+
+# copy the raw data to train 
+COPY data/ ./
+
+# copy the pickled best model
+COPY "pickled_model.bin" ./
+
+# copy the dict vectorizer fitted on full training data
+COPY "dictvec_fulltrain.bin" ./
+
+# copy the predict script
+COPY "predict.py" ./
+
+# exposing the port of the container to serve the app
+EXPOSE #
+
+ENTRYPOINT ["uvicorn", "predict:app", "--host", "#.#.#.#", "--port", "#"]
