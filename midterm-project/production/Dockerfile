@@ -1,6 +1,6 @@
-FROM alpine:3.18 AS base
+FROM python:3.13-slim
 
-# necessary files needed for uv virtual environment
+# necessary files needed for uv virtual environment container
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 # setting the working directory

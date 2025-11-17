@@ -36,7 +36,7 @@ with open('dictvec_fulltrain.bin', 'rb') as vec_in:
 
 # fn for making prediction of one patient health record 
 def predict_single(patient_health_record):
-    features_vectorized = dict_vectorize_feature.transform(patient_health_record.to_dict(orient='records'))
+    features_vectorized = dict_vectorize_feature.transform(patient_health_record)
     result = model.predict(features_vectorized)
     return float(result)
 
