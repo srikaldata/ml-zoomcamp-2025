@@ -553,20 +553,86 @@ best_model_params
 # # 4. Making predictions and evaluations
 
 
+# # fn to only make predictions and evaluations
+
+# def predict_and_evaluate(best_model_params, X_val_or_test, y_val_or_test):
+#     """Use best estimators to predict and print evaluation metrics."""
+#     for name, model in best_model_params.items():
+        
+#         # making the predictions
+#         print(f"Evaluating model {name}...")
+#         y_pred = model.predict(X_val_or_test)
+        
+#         # printing the evaluation metrics
+#         print(f"Accuracy: {accuracy_score(y_val_or_test, y_pred):.4f}")
+#         print(f"Precision: {precision_score(y_val_or_test, y_pred):.4f}")
+#         print(f"Recall: {recall_score(y_val_or_test, y_pred):.4f}")
+#         print(f"F1 Score: {f1_score(y_val_or_test, y_pred):.4f}")
+#         print("-" * 50)
+
+
+
+
+# fn to predict evaluate and plot the evaluation metrics
+
 def predict_and_evaluate(best_model_params, X_val_or_test, y_val_or_test):
     """Use best estimators to predict and print evaluation metrics."""
+    metrics = ['Accuracy', 'Precision', 'Recall', 'F1 Score']
+    
+    # empty list to store the metrics
+    scores = {name: [] for name in best_model_params.keys()}
+
+    # evaluating the metrics
     for name, model in best_model_params.items():
-        
         # making the predictions
         print(f"Evaluating model {name}...")
         y_pred = model.predict(X_val_or_test)
-        
-        # printing the evaluation metrics
-        print(f"Accuracy: {accuracy_score(y_val_or_test, y_pred):.4f}")
-        print(f"Precision: {precision_score(y_val_or_test, y_pred):.4f}")
-        print(f"Recall: {recall_score(y_val_or_test, y_pred):.4f}")
-        print(f"F1 Score: {f1_score(y_val_or_test, y_pred):.4f}")
+
+        accuracy = accuracy_score(y_val_or_test, y_pred)
+        precision = precision_score(y_val_or_test, y_pred)
+        recall = recall_score(y_val_or_test, y_pred)
+        f1 = f1_score(y_val_or_test, y_pred)
+
+        # storing the scores
+        scores[name] = [accuracy, precision, recall, f1]
+
+        print(f"Accuracy: {accuracy:.4f}")
+        print(f"Precision: {precision:.4f}")
+        print(f"Recall: {recall:.4f}")
+        print(f"F1 Score: {f1:.4f}")
         print("-" * 50)
+
+    # grouped bar chart  
+    model_names = list(scores.keys())
+    metric_values = np.array(list(scores.values()))  # shape: (num_models, num_metrics)
+
+    bar_width = 0.2
+    indices = np.arange(len(metrics))
+
+    plt.figure(figsize=(10, 6))
+
+    bars = []
+    for i, model_name in enumerate(model_names):
+        bars.append(plt.bar(indices + i * bar_width, metric_values[i], width=bar_width, label=model_name))
+
+    # value labels for each bar
+    for bar_group in bars:
+        for bar in bar_group:
+            height = bar.get_height()
+            plt.annotate(f'{height:.4f}',
+                         xy=(bar.get_x() + bar.get_width() / 2, height),
+                         xytext=(0, 5),  # 5 points vertical offset
+                         textcoords="offset points",
+                         ha='center', va='bottom', fontsize=9)
+
+    plt.xlabel('Metrics')
+    plt.ylabel('Scores')
+    plt.title('Comparison of Evaluation Metrics for Models')
+    plt.xticks(indices + bar_width * (len(model_names) - 1) / 2, metrics)
+    plt.ylim(0, 1.1)
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
 
 
 
@@ -574,7 +640,7 @@ def predict_and_evaluate(best_model_params, X_val_or_test, y_val_or_test):
 predict_and_evaluate(best_model_params, X_val, y_val)
 
 
-# 
+
 # 
 # Since the dataset is slightly imbalanced on comparing with the target variables,
 # 

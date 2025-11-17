@@ -15,11 +15,14 @@ RUN uv sync --locked
 # copy the raw data to train 
 COPY data/ ./
 
-# copy the pickled best model
+# copy the pickled best model (optional - if you run the train.py in the container, it is not needed)
 COPY "pickled_model.bin" ./
 
-# copy the dict vectorizer fitted on full training data
+# copy the dict vectorizer fitted on full training data (optional - if you run the train.py in the container, it is not needed)
 COPY "dictvec_fulltrain.bin" ./
+
+# copy the train script
+COPY "train.py" ./
 
 # copy the predict script
 COPY "predict.py" ./
