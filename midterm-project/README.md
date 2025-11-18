@@ -3,36 +3,36 @@
 
 #### IMPORTANT INSTRUCTIONS:
 1. **/production** folder is the virtual environment with **train.py**, **serve.py**, **predict.py**
-<br>
-<br>
+
+
 2. **modeling.ipynb** is the same as 'train.py' but in a python jupyter notebook. You can run it other than **train.py** if you need a user friendly interface
-<br>
-<br>
+
+
 3. the **/production** environment is created and dependencies are created using **uv**. it is reproducible 
-<br>
-<br>
+
+
 4. If you plan on running the model in your own environment, along with the entire folder make sure you do the following
     <br>
     (A) in **serve.py** add the IP and port you wish to serve the model from 
     <br>
     (B) in **predict.py** add the port at which the request is POSTed in the IP (or) localhost
-<br>
-<br>
+
+
 5. If you plan to run by creating a docker image and making the inference from it:
     <br>
     (A) **follow the same steps in Instruction 4**
     <br>
     (B) edit the **Dockerfile** to mention the host IP and expose the port you need to send the json for prediction
-<br>
-<br>
+
+
 6. If you wish to serve it as a webapp:
     (A) you can export the docker image and serve it in **fly.io** or codespaces or any cloud platform instances
         <br>
         (but make sure to make changes in the serve.py predict.py Dockerfile to serve in the appropriate IP and port)
     <br>
     (B) unfortunately there is NO live web app serving requests at this moment
-<br>
-<br>
+
+
 7. Requirements:
     <br>
     (A) **python 3.13**
@@ -340,6 +340,7 @@ flyctl apps destroy insulin-dosage-###-###-###-###
 <br><br>
 __IMPORTANT REMINDER -->__ please make sure you have closed the web app if it is hosted and running in terminal OR docker OR cloud
 <br>
+
 ## SPECIAL NOTE:
 Thanks to ML zoomcamp team, datatalks.club team and peers!
 
