@@ -1,0 +1,59 @@
+cuda installation and pytorch integration in Windows:
+
+1. find your os and gpu -->
+win+r 
+>> msinfo32
+find from system summary and hardware resources
+
+
+2. check if your gpu is cuda compliant here --> 
+https://developer.nvidia.com/cuda-gpus
+
+for windows users follow the installation guide -->
+https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/
+
+(IF YOU DO NOT HAVE ALREAY INSTALLED NVIDIA DRIVERS use this link to download and install/update --> https://www.nvidia.com/en-us/drivers/)
+
+
+3. cuda toolkit download site for Linux / windows --> 
+https://developer.nvidia.com/cuda-downloads
+(choose "local" to download and install all cuda components at once. 
+choose "network" to download and install cuda components on the go)
+
+
+4. install using the downloaded installer. do not worry if you do not have Visual Studio (if you have Visual Studio code, it is sufficient for this project purpose). note down the version of cuda you are installing
+
+
+In win+r --> >> cmd : 
+5. after installation check version using the following command -->
+>> nvcc --version
+
+
+6. upgrade pip -->
+>> pip install --upgrade
+
+
+7. remove previously installed pytorch --> 
+>> pip uninstall torch torchvision torchaudio
+
+
+8. install pytorch
+>> pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu<<<ENTER VERSION OF YOUR CUDA WITHOUT DOT>>>
+
+example for cuda version 13:
+>> pip uninstall torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu130
+
+NOTE: YOU CAN ALSO INSTALL pytorch IN A VIRTUAL ENVIRONMENT LIKE conda
+
+
+9. verify if your python has integrated with pytorch
+>> python
+>> >>> import torch
+>> >>> torch.cuda.is_available()
+>>     True
+>> >>> torch.version.cuda
+>>     <<<VERSION OF CUDA>>>
+>> >>> ^Z
+
+
+10. good to go
