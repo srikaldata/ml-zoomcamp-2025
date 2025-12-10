@@ -1,7 +1,7 @@
 # importing and viewing the model
 import onnxruntime as ort
 
-onnx_model_path = 'hair_classifier_v1.onnx'
+onnx_model_path = 'hair_classifier_empty.onnx'
 
 session = ort.InferenceSession(onnx_model_path, providers=['CPUExecutionProvider'])
 
