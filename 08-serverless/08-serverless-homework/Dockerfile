@@ -1,10 +1,15 @@
-FROM public.ecr.aws/lambda/python:3.13
+FROM agrigorev/model-2025-hairstyle:v1
 
+# installing dependenices
 RUN pip install onnxruntime pillow torchvision
 
-COPY clothing-model-new.onnx .
+# optional to copy the existing model
+COPY hair_classifier_v1.onnx .
+
+# copying the lambda function developed
 COPY lambda_function.py
 
+# calling the lambda_handler fn inside lambda_handler script
 CMD ["lambda_function.lambda_handler"]
 
 
