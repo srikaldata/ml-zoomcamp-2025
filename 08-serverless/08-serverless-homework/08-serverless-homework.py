@@ -90,9 +90,7 @@ print(temp_img_resized)
 
 
 # importing preprocessing modules
-from torch.utils.data import Dataset
 from torchvision import transforms
-import os
 
 
 
@@ -142,3 +140,4 @@ print('Image prediction probability:', predictions)
 # Converting the notebook to a script by running
 # 
 # jupyter nbconvert --to script 08-serverless-homework.ipynb --output-dir="08-serverless-homework"
+
