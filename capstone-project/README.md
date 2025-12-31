@@ -1,9 +1,34 @@
 # Estimation of Sales Revenue based on Advertisement Budgets across various channels 
 
+## INSTRUCTIONS TO RUN THE CODE:
+* /production folder is the virtual environment with train.py, serve.py, predict.py
+
+* modeling.ipynb is the same as 'train.py' but in a python jupyter notebook. You can run it other than train.py if you need a user friendly interface
+
+* the /production environment is created and dependencies are created using uv. it is reproducible
+
+* If you plan on running the model in your own environment, along with the entire folder make sure you do the following<br>
+(A) in serve.py add the IP and port you wish to serve the model from<br>
+(B) in predict.py add the port at which the request is POSTed in the IP (or) localhost
+
+* If you plan to run by creating a docker image and making the inference from it:<br>
+(A) follow the same steps in Instruction 4<br>
+(B) edit the Dockerfile to mention the host IP and expose the port you need to send the json for prediction
+
+* If you wish to serve it as a webapp:<br> 
+(A) you can export the docker image and serve it in fly.io or codespaces or any cloud platform instances<br>
+(but make sure to make changes in the serve.py predict.py Dockerfile to serve in the appropriate IP and port)<br>
+(B) unfortunately there is NO live web app serving requests at this moment
+
+* Requirements:<br>
+(A) python 3.13<br>
+(B) Docker<br>
+(C) any cloud service with an instance to host the container
+
 ## Problem statement
 This project aims to build a predictive model that estimates sales revenue using advertising expenditure across multiple channels. The dataset contains historical records of sales performance, marketing spend, and campaign initiatives across diverse media. It serves as a resource for evaluating advertising strategies, running A/B tests, optimizing marketing budgets, and forecasting future revenue trends. 
 
-The goal is to select the best regressor ML model out of many (3) models, found by tuning few of its hyperparameters, to predict the target OR expected sales revenue for the budget spent as advertisements across 4 channles namely: TV, Radio, Social Media & Influencers. The chosen model and its environment can be hosted as a containerized web app which is built using python, uv, FastAPI, Docker in any cloud instance (fly.io is used in the report) which provides a sales revenue estimate as a response.
+The goal is to select the best regressor ML model out of many (4) models, found by tuning few of its hyperparameters, to predict the target OR expected sales revenue for the budget spent as advertisements across 4 channles namely: TV, Radio, Social Media & Influencers. The chosen model and its environment can be hosted as a containerized web app which is built using python, uv, FastAPI, Docker in any cloud instance (fly.io is used in the report) which provides a sales revenue estimate as a response.
 
 **DISCLAIMER**: The domain of this project and its resources are purely intended for learning purposes. The models generated out of this project are not recommended to be deployed in any company specific applications.
 
