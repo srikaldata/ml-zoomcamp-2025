@@ -3,7 +3,7 @@
 ## INSTRUCTIONS TO RUN THE CODE:
 * /production folder is the virtual environment with train.py, serve.py, predict.py
 
-* modeling.ipynb is the same as 'train.py' but in a python jupyter notebook. You can run it other than train.py if you need a user friendly interface
+* eda_and_modeling.ipynb is the same as 'train.py' but in a python jupyter notebook. You can run the eda and training codes block by block in the former file 
 
 * the /production environment is created and dependencies are created using uv. it is reproducible
 
@@ -12,18 +12,18 @@
 (B) in predict.py add the port at which the request is POSTed in the IP (or) localhost
 
 * If you plan to run by creating a docker image and making the inference from it:<br>
-(A) follow the same steps in Instruction 4<br>
-(B) edit the Dockerfile to mention the host IP and expose the port you need to send the json for prediction
+(A) edit the Dockerfile to mention the host IP and expose the port you need to send the json for prediction
 
 * If you wish to serve it as a webapp:<br> 
-(A) you can export the docker image and serve it in fly.io or codespaces or any cloud platform instances<br>
-(but make sure to make changes in the serve.py predict.py Dockerfile to serve in the appropriate IP and port)<br>
-(B) unfortunately there is NO live web app serving requests at this moment
+(A) you can export the docker image and serve it in fly.io or codespaces or any other cloud platform instances<br>
+(but make sure to make changes in the serve.py predict.py Dockerfile to ping the appropriate IP and port)<br>
+(B) unfortunately there is NO live web app serving requests in the current moment but feel free to host it in your account/system
 
 * Requirements:<br>
 (A) python 3.13<br>
 (B) Docker<br>
-(C) any cloud service with an instance to host the container
+(C) any cloud service with an instance to host the container<br>
+(D) environment dependencies - please refer pyproject.toml in production folder
 
 ## Problem statement
 This project aims to build a predictive model that estimates sales revenue using advertising expenditure across multiple channels. The dataset contains historical records of sales performance, marketing spend, and campaign initiatives across diverse media. It serves as a resource for evaluating advertising strategies, running A/B tests, optimizing marketing budgets, and forecasting future revenue trends. 
@@ -325,7 +325,7 @@ flyctl apps destroy sales-revenue-####-#### --yes
 - Monitoring model drift by setting estimates from targets and using the feedback for improvements
 - Consult with the marketing team to check if they need a more accurate but non-interpretable (black box) model that can be built using more granular and auxillary data
 
-> **IMPORTANT REMINDER** --> Please make sure you have closed the web app if it is hosted and running in terminal OR docker OR cloud
+> **IMPORTANT REMINDER** --> Please make sure you have closed the web app / instances if it is hosted and running in terminal OR docker OR cloud
 
 
 # SPECIAL NOTE
