@@ -619,7 +619,7 @@ wheels = [
 ]
 
 [[package]]
-name = "sales-prediction-production"
+name = "sales-estimation-production"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

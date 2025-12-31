@@ -9,21 +9,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-# package versions used to verify to create a virtual environment:
-# np.__version__
-# # '2.3.4'
-# pd.__version__
-# # '2.3.3'
-# matplotlib.__version__
-# # '3.10.7'
-# sns.__version__
-# # '0.13.2'
-# sklearn.__version__
-# # '1.7.2'
-# xgboost.__version__
-# # '3.1.1'
-
-
 # importing sales revenue data
 adsales_df = pd.read_csv('data/advertising_and_sales_clean.csv')
 print(adsales_df.head())
